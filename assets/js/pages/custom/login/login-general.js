@@ -115,9 +115,12 @@ var KTLoginGeneral = (function () {
               )
               .attr("disabled", false);
 
-            if (xhr.responseText == "true")
+            if (xhr.responseText == "true") {
               showErrorMsg(form, "success", "You've Logged in Successfully!");
-            else if (xhr.responseText == "password_check_failed")
+              setTimeout(() => {
+                window.location.href = "fanatics/index.php";
+              }, 1500);
+            } else if (xhr.responseText == "password_check_failed")
               showErrorMsg(
                 form,
                 "danger",
@@ -206,7 +209,9 @@ var KTLoginGeneral = (function () {
               showErrorMsg(form, "success", "You've Signed in Successfully!");
               form.clearForm();
               form.validate().resetForm();
-              setTimeout(() => {}, 1500);
+              setTimeout(() => {
+                window.location.href = "fanatics/index.php";
+              }, 1500);
             } else if (xhr.responseText == "password_check_failed")
               showErrorMsg(
                 form,

@@ -2,19 +2,18 @@
 // Database connection
 class Database 
 {
-    private $pdo; // PDO
+    private $con; // PDO
     private $result; // PDO statement
     private $row; // Associative array of fields
 
     function __construct() 
     {
-        $this->pdo = new PDO("mysql:host=localhost;dbname=fanatics;port=3308", "fanatics","fanatics");
-        $this->transaction();
-        $this->query("create table if not exists USERS (user_id int AUTO_INCREMENT, email_id varchar(100), address varchar(200), contactNo varchar(20), user_password varchar(100), is_vendor int(1) default 0, CONSTRAINT user_id_primary_chk PRIMARY KEY (user_id), CONSTRAINT email_id_unique_chk UNIQUE (email_id));");
-        $this->query("create table if not EXISTS brand (brand_id int AUTO_INCREMENT PRIMARY KEY, brand_name varchar(100) UNIQUE, brand_description varchar(250), vendor_id int UNIQUE, constraint vendor_id_fk FOREIGN KEY (vendor_id) REFERENCES users(user_id));");
-        $this->query("create table if NOT EXISTS product (product_id int AUTO_INCREMENT PRIMARY KEY, product_name varchar(100) UNIQUE, product_description varchar(250), product_price int, product_size varchar(50), brand_id int UNIQUE, constraint brand_id_fk FOREIGN KEY (brand_id) REFERENCES brand(brand_id));");
+        $this->con = mysqli_connect("localhost","fanatics","fanatics","fanatics",3308);
+        
+        mysqli_query($this->con,"create table if not exists USERS (user_id int AUTO_INCREMENT, email_id varchar(100), address varchar(200), contactNo varchar(20), user_password varchar(100), is_vendor int(1) default 0, CONSTRAINT user_id_primary_chk PRIMARY KEY (user_id), CONSTRAINT email_id_unique_chk UNIQUE (email_id));");
+        mysqli_query($this->con,"create table if not EXISTS brand (brand_id int AUTO_INCREMENT PRIMARY KEY, brand_name varchar(100) UNIQUE, brand_description varchar(250), vendor_id int UNIQUE, constraint vendor_id_fk FOREIGN KEY (vendor_id) REFERENCES users(user_id));");
+        mysqli_query($this->con,"create table if NOT EXISTS product (product_id int AUTO_INCREMENT PRIMARY KEY, product_name varchar(100) UNIQUE, product_description varchar(250), product_price int, product_size varchar(50), brand_id int UNIQUE, constraint brand_id_fk FOREIGN KEY (brand_id) REFERENCES brand(brand_id));");
 
-        $this->commit();
         // if ($this->get("count") == 0) 
         // {
         //     $this->transaction();
@@ -42,19 +41,12 @@ class Database
 
     }
 
-    // Begin a transaction
-    function transaction() {
-        $this->pdo->beginTransaction();
-    }
 
-    // Commit a transaction
-    function commit() {
-        $this->pdo->commit();
-    }
 
     // Execute query `sql` substituting `values` for ? symbols
     function query($sql, ...$values) 
     {
+        mysqli_begin_transaction($this->con);
         if ($values) 
         {
             $sql_ = $sql;
@@ -73,17 +65,25 @@ class Database
                 else
                     $sql .= $sql_[$i];
         }
-        $this->result = $this->pdo->query($sql);
-        return $this->pdo->lastInsertId();
+        $this->result = mysqli_query($this->con,$sql,MYSQLI_ASSOC);
+        $this->commit();
+        return $this->result;
+    }
+    
+
+    function commit(){
+        mysqli_commit($this->con);
     }
 
     // Go to the next row (return true if exists)
-    function next() {
-        return $this->row = $this->result->fetch(PDO::FETCH_ASSOC);
+    function next( ) 
+    {
+        return $this->row = mysqli_fetch_array( $this->result );
     }
 
     // Get the `column` column of the row
-    function get($column) {
+    function get($column) 
+    {
         return $this->row[$column];
     }
 }

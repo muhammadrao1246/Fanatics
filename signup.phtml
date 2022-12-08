@@ -7,7 +7,12 @@
     <title>Sign Up</title>
   </head>
   <body>
-    <h1>Sign Up</h1>
+    <?php
+session_start();
+    ?>
+    <h1>
+      <?= print_r($_SESSION)?>
+    </h1>
     <br />
     <form
       method="post"
