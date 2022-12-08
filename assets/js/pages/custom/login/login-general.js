@@ -115,15 +115,15 @@ var KTLoginGeneral = (function () {
               )
               .attr("disabled", false);
 
-            if (response.responseText == "true")
+            if (xhr.responseText == "true")
               showErrorMsg(form, "success", "You've Logged in Successfully!");
-            else if (response.responseText == "password_check_failed")
+            else if (xhr.responseText == "password_check_failed")
               showErrorMsg(
                 form,
                 "danger",
                 "Incorrect password. Please try again."
               );
-            else if (response.responseText == "user_does_not_exists")
+            else if (xhr.responseText == "user_does_not_exists")
               showErrorMsg(
                 form,
                 "danger",
@@ -195,24 +195,25 @@ var KTLoginGeneral = (function () {
                 "kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light"
               )
               .attr("disabled", false);
-            form.clearForm();
-            form.validate().resetForm();
 
             // display signup form
-            displaySignInForm();
-            var signInForm = login.find(".kt-login__signin form");
-            signInForm.clearForm();
-            signInForm.validate().resetForm();
+            // displaySignInForm();
+            // var signInForm = login.find(".kt-login__signin form");
+            // signInForm.clearForm();
+            // signInForm.validate().resetForm();
 
-            if (response.responseText == "true")
+            if (xhr.responseText == "true") {
               showErrorMsg(form, "success", "You've Signed in Successfully!");
-            else if (response.responseText == "password_check_failed")
+              form.clearForm();
+              form.validate().resetForm();
+              setTimeout(() => {}, 1500);
+            } else if (xhr.responseText == "password_check_failed")
               showErrorMsg(
                 form,
                 "danger",
                 "Passwords are Different. Please type again."
               );
-            else if (response.responseText == "user_exists_already")
+            else if (xhr.responseText == "User_exists_already")
               showErrorMsg(
                 form,
                 "danger",

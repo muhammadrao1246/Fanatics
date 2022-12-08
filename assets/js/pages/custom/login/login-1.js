@@ -60,15 +60,15 @@ var KTLoginV1 = (function () {
           setTimeout(function () {
             KTApp.unprogress(btn[0]);
 
-            if (response.responseText == "true")
+            if (xhr.responseText == "true")
               showErrorMsg(form, "success", "You've Logged in Successfully!");
-            else if (response.responseText == "password_check_failed")
+            else if (xhr.responseText == "password_check_failed")
               showErrorMsg(
                 form,
                 "danger",
                 "Incorrect password. Please try again."
               );
-            else if (response.responseText == "user_does_not_exists")
+            else if (xhr.responseText == "user_does_not_exists")
               showErrorMsg(
                 form,
                 "danger",

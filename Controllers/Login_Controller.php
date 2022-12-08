@@ -11,7 +11,7 @@ if(isset($_GET['login']))
     $email_id = $_GET['email'];
     $password = $_GET['password'];
 
-    $database->query("SELECT FROM USERS WHERE email_id = $email_id");
+    $database->query("SELECT * FROM USERS WHERE email_id = '$email_id';");
     
     if ( $database->next() ) 
     {
