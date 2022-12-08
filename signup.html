@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <br />
+    <form
+      method="post"
+      action="Controllers/SignUp_Controller.php"
+      class="signup_form"
+    >
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email or Username</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          name="email"
+          required="required"
+          title="Enter your email here"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputName1">Name</label>
+        <input
+          class="form-control"
+          id="exampleInputName1"
+          type="text"
+          name="name"
+          pattern="[a-zA-Z ]+"
+          title="Contains Only Letters"
+          required
+          aria-describedby="emailHelp"
+          placeholder="Enter name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputName1">Address</label>
+        <input
+          class="form-control"
+          id="exampleInputName1"
+          type="text"
+          name="address"
+          title="Contains Only Letters"
+          required
+          aria-describedby="emailHelp"
+          placeholder="Enter name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputName1">ContactNo</label>
+        <input
+          class="form-control"
+          id="exampleInputName1"
+          type="text"
+          name="contactNo"
+          title="Contains Only Letters"
+          required
+          aria-describedby="emailHelp"
+          placeholder="Enter name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">New Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          required="required"
+          name="npass"
+          pattern="(([a-zA-Z0-9]+)||([ ]{0,0}))"
+          title="Password may contain letter, symbols and numbers but spaces are not allowed"
+          placeholder="Password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword2">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword2"
+          name="cpass"
+          pattern="(([a-zA-Z0-9]+)||([ ]{0,0}))"
+          title="Type Same Password As In The Above Field. (Only Letters, Symbols and Numbers are allowed)"
+          required="required"
+          placeholder="Confirm Your Password"
+        />
+      </div>
+      <div
+        class="form-group"
+        title="Leave it. If you want to register as rental user"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+      >
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="isVendor"
+          value="1"
+          id="check_owner"
+        />
+        <label for="check_owner" class="form-check-label"
+          >Registered as Vendor</label
+        >
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        name="signup"
+        value="Sign Up"
+      >
+        Sign Up
+      </button>
+    </form>
+  </body>
+</html>
