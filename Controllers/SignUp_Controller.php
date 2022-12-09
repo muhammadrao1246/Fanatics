@@ -26,8 +26,8 @@ try
             
             if ( $new_password === $confirm_password ) 
             {
-                $database->query("INSERT INTO USERS VALUES (null,'$email_id','$username','$address','$contactNo','".password_hash($new_password,PASSWORD_DEFAULT)."')");
-                $_SESSION =  ["emailid"=> $email_id, "address"=> $address, "contactno"=> $contactNo] ;
+                $database->query("INSERT INTO USERS VALUES (null,'$email_id','$username','$address','$contactNo','".password_hash($new_password,PASSWORD_DEFAULT)."',$is_vendor)");
+                $_SESSION =  ["emailid"=> $email_id, "username"=> $username, "address"=> $address, "contactno"=> $contactNo] ;
                 echo "true";
             }
             else

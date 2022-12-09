@@ -1,6 +1,6 @@
 <?php
 
-include "../Models/Database.php";
+require_once "../Models/Database.php";
 
 $database = new Database();
 
@@ -17,7 +17,7 @@ if(isset($_GET['login']))
     {
         if ( password_verify($password, $database->get('user_password')) ) 
         {
-            $_SESSION = ["emailid"=> $email_id, "address"=> $database->get("address"), "contactno"=> $database->get("contactNo")];
+            $_SESSION = ["emailid"=> $email_id, "username"=> $database->get("username"), "address"=> $database->get("address"), "contactno"=> $database->get("contactNo")];
             echo "true";
         }
         else
@@ -31,9 +31,5 @@ if(isset($_GET['login']))
     }
 
 }
-else if(isset($_GET['logout']))
-{
-    unset($_SESSION);
-    session_destroy();
-}
+
     
