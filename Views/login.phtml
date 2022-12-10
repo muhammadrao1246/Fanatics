@@ -26,6 +26,9 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link rel="shortcut icon" href="fanatics/assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="fanatics/assets/css/intlTelInput.css">
+    <link rel="stylesheet" href="fanatics/assets/css/demo.css">
 
     <!--end::Page Custom Styles -->
 
@@ -310,7 +313,19 @@
     />
 
     <!--end::Layout Skins -->
-    <link rel="shortcut icon" href="fanatics/assets/media/logos/favicon.ico" />
+    
+    <style>
+      .iti{
+        width: 100%;
+      }
+      .iti__flag-container{
+        margin-top: 20px;
+        padding: 0;
+      }
+      .iti__selected-flag{
+        padding-left: 1.5em;
+      }
+    </style>
   </head>
 
   <!-- end::Head -->
@@ -327,12 +342,12 @@
       >
         <div
           class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor"
-          style="background-image: url(assets/media/bg/bg-3.jpg)"
+          style="background-image: url(fanatics/assets/media/bg/bg-3.jpg)"
         >
           <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
             <div class="kt-login__container">
               <div class="kt-login__logo">
-                <a href="#">
+                <a href="Fanatics/dashboard/">
                   <img src="fanatics/assets/media/logos/fanatics-logo.png" width="200"/>
                 </a>
               </div>
@@ -361,7 +376,7 @@
                   <div class="row kt-login__extra">
                     <div class="col">
                       <label class="kt-checkbox">
-                        <input type="checkbox" name="remember" /> Remember me
+                        <input type="checkbox" name="remember" value="1" /> Remember me
                         <span></span>
                       </label>
                     </div>
@@ -420,12 +435,14 @@
                     />
                   </div>
                   <div class="input-group">
+                    <input type="hidden" name="country_code" id="country_code" value="+1">
                     <input
                       class="form-control"
-                      type="text"
-                      placeholder="Contact No"
-                      name="contactNo"
                       autocomplete="off"
+                      id="phone" 
+                      name="contactNo" 
+                      type="tel"
+                      style="text-align: end;margin-top: 1.5rem !important;"
                     />
                   </div>
                   <div class="input-group">
@@ -444,16 +461,7 @@
                       name="rpassword"
                     />
                   </div>
-                  <div class="row kt-login__extra">
-                    <div class="col kt-align-left">
-                      <label class="kt-checkbox">
-                        <input type="checkbox" name="is_vendor" />Register as a Vendor</a
-                        >.
-                        <span></span>
-                      </label>
-                      <span class="form-text text-muted"></span>
-                    </div>
-                  </div>
+                  
                   <input type="hidden" name="signup" value="true">
                   <div class="kt-login__actions">
                     <button
@@ -1025,6 +1033,39 @@
     ></script>
 
     <!--end::Page Scripts -->
+
+    <!-- additional:: form scripts  -->
+    <script
+      src="fanatics/assets/js/pages/custom/login/validation_handler.js"
+      type="text/javascript"
+    ></script>
+    <script src="fanatics/assets/js/intlTelInput.js"></script>
+    <script>
+      var input = document.querySelector("#phone");
+      window.intlTelInput(input, {
+        // allowDropdown: false,
+        // autoHideDialCode: false,
+        // autoPlaceholder: "off",
+        // dropdownContainer: document.body,
+        // excludeCountries: ["us"],
+        // formatOnDisplay: false,
+        // geoIpLookup: function(callback) {
+        //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+        //     var countryCode = (resp && resp.country) ? resp.country : "";
+        //     callback(countryCode);
+        //   });
+        // },
+        // hiddenInput: "full_number",
+        // initialCountry: "auto",
+        // localizedCountries: { 'de': 'Deutschland' },
+        // nationalMode: false,
+        // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+        // placeholderNumberType: "MOBILE",
+        // preferredCountries: ['cn', 'jp'],
+        // separateDialCode: true,
+        utilsScript: "fanatics/assets/js/utils.js",
+      });
+    </script>
    
   </body>
 

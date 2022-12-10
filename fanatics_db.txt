@@ -1,6 +1,10 @@
 #***FANATICS DATABASE***
 create database fanatics;
 
+#****FANATICS USERS****
+create user fanatics@localhost identified by "fanatics";
+grant all priviliges to fanatics@localhost on fanatics.*;
+
 #*****TABLES CREATION*****
 
 #-----USER TABLE------

@@ -54,7 +54,7 @@ var KTLoginV1 = (function () {
 
       // ajax form submit:  http://jquery.malsup.com/form/
       form.ajaxSubmit({
-        url: "fanatics/Controllers/Login_Controller.php",
+        url: "Fanatics/Controllers/auth/Login_Controller.php",
         success: function (response, status, xhr, $form) {
           // similate 2s delay
           setTimeout(function () {

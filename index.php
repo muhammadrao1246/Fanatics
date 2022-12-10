@@ -1,9 +1,17 @@
 <?php
 
-    include "Models/Database.php";
-    session_start();
-    print_r($_SESSION);
-    include "Controllers/Logout_Controller.php";
-    include "Views/index.phtml";
+
+session_start();
+if (!isset($_SESSION['username']))
+{
+    include "Views/login.phtml";
+}
+else
+{
+    echo "<script>
+                if(history.forward() == undefined)
+                    window.location.href = 'dashboard/';
+        </script>";
+}
 
 ?>

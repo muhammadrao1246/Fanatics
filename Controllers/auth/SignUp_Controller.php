@@ -1,9 +1,9 @@
 <?php
 
 
-include "../Models/Database.php";
+include "../../Models/Database.php";
 
-
+session_start();
 
 $database = new Database();
 
@@ -14,8 +14,8 @@ try
         $email_id = $_GET['email'];
         $username = $_GET['fullname'];
         $address = $_GET['address'];
+        $code = $_GET['country_code'];
         $contactNo = $_GET['contactNo'];
-        $is_vendor = isset($_GET['isVendor']) ? $_GET['isVendor'] : 0;
         $new_password = $_GET['password'];
         $confirm_password = $_GET['rpassword'];
 
@@ -26,7 +26,7 @@ try
             
             if ( $new_password === $confirm_password ) 
             {
-                $database->query("INSERT INTO USERS VALUES (null,'$email_id','$username','$address','$contactNo','".password_hash($new_password,PASSWORD_DEFAULT)."',$is_vendor)");
+                $database->query("INSERT INTO USERS VALUES (null,'$email_id','$username','$address','".$code.$contactNo."','".password_hash($new_password,PASSWORD_DEFAULT)."')");
                 $_SESSION =  ["emailid"=> $email_id, "username"=> $username, "address"=> $address, "contactno"=> $contactNo] ;
                 echo "true";
             }

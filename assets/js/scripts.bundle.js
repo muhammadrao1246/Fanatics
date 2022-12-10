@@ -251,6 +251,7 @@ var KTApp = function() {
                 html = spinner;
             }
 
+            
             var params = {
                 message: html,
                 centerY: options.centerY,
