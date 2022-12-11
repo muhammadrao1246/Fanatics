@@ -17,7 +17,7 @@
 									<div class="kt-portlet__head-toolbar">
 										<div class="kt-portlet__head-wrapper">
 											<div class="kt-portlet__head-actions">
-												<a href="#" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#kt_modal_1">
+												<a href="#" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addProductModal">
 													<i class="la la-plus"></i>
 													New Product
 												</a>
@@ -48,12 +48,8 @@
 															<div class="kt-form__control">
 																<select class="form-control bootstrap-select" id="kt_form_status">
 																	<option value="">All</option>
-																	<option value="1">Pending</option>
-																	<option value="2">Delivered</option>
-																	<option value="3">Canceled</option>
-																	<option value="4">Success</option>
-																	<option value="5">Info</option>
-																	<option value="6">Danger</option>
+																	<option value="1">Enable</option>
+																	<option value="2">Disable</option>
 																</select>
 															</div>
 														</div>
@@ -129,73 +125,75 @@
 
 						<!-- end:: Content -->
 					</div>
-<div class="modal fade" id="kt_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Product</h5>
+				<h5 class="modal-title" id="addProductModalLabel">Product</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				</button>
 			</div>
-			<div class="modal-body">
-			<div class="kt-form kt-form--label-right">
-				<div class="kt-form__body">
-					<div class="kt-section kt-section--first">
-						<div class="kt-section__body">
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">Image</label>
-								<div class="col-lg-9 col-xl-6">
-									<div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_user_edit_avatar">
-										<div class="kt-avatar__holder" style="background-image: url('../assets/media/users/300_20.jpg');"></div>
-										<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
-											<i class="fa fa-pen"></i>
-											<input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
-										</label>
-										<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
-											<i class="fa fa-times"></i>
-										</span>
+			<form action="">
+				<div class="modal-body">
+					<div class="kt-form kt-form--label-right">
+						<div class="kt-form__body">
+							<div class="kt-section kt-section--first">
+								<div class="kt-section__body">
+									<div class="form-group row">
+										<label class="col-xl-3 col-lg-3 col-form-label">Image</label>
+										<div class="col-lg-9 col-xl-6">
+											<div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_user_edit_avatar">
+												<div class="kt-avatar__holder" style="background-image: url('../assets/media/users/300_20.jpg');"></div>
+												<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+													<i class="fa fa-pen"></i>
+													<input type="file" name="image" accept=".png, .jpg, .jpeg">
+												</label>
+												<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+													<i class="fa fa-times"></i>
+												</span>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">Name</label>
-								<div class="col-lg-9 col-xl-6">
-									<input class="form-control" type="text" placeholder="Enter Product Name" name="name">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">Description</label>
-								<div class="col-lg-9 col-xl-6">
-									<textarea class="form-control" id="exampleTextarea" rows="2"></textarea>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">Size</label>
-								<div class="col-lg-9 col-xl-6">
-									<input class="form-control" type="text" placeholder="small, medium, large, extra large">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">price</label>
-								<div class="col-lg-9 col-xl-6">
-									<input class="form-control" type="text" placeholder="120.3">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-xl-3 col-lg-3 col-form-label">Quantity</label>
-								<div class="col-lg-9 col-xl-6">
-									<input class="form-control" type="number" placeholder="20">
+									<div class="form-group row">
+										<label class="col-xl-3 col-lg-3 col-form-label">Name</label>
+										<div class="col-lg-9 col-xl-6">
+											<input class="form-control" type="text" placeholder="Enter Product Name" name="name">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-xl-3 col-lg-3 col-form-label">Description</label>
+										<div class="col-lg-9 col-xl-6">
+											<textarea class="form-control" name="description" id="exampleTextarea" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-xl-3 col-lg-3 col-form-label">Size</label>
+										<div class="col-lg-9 col-xl-6">
+											<input class="form-control" type="text" name="size" placeholder="small, medium, large, extra large">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-xl-3 col-lg-3 col-form-label">price</label>
+										<div class="col-lg-9 col-xl-6">
+											<input class="form-control" name="price" type="text" placeholder="120.3">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-xl-3 col-lg-3 col-form-label">Quantity</label>
+										<div class="col-lg-9 col-xl-6">
+											<input class="form-control" name="qty" type="number" placeholder="20">
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save</button>
-			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-brand btn-elevate kt-login__btn-primary" id="kt_product_submit">Save</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
