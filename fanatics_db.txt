@@ -20,21 +20,6 @@ create table USERS
     CONSTRAINT email_id_unique_chk UNIQUE (email_id)
 );
 
-#=====ONE COLUMN ADDED=======
-alter TABLE users
-add column is_vendor int(1) default 0
-after user_password;
-
-#-----BRAND TABLE-----
-create table brand
-(
-    brand_id int AUTO_INCREMENT PRIMARY KEY,
-    brand_name varchar(100) UNIQUE,
-    brand_description varchar(250),
-    vendor_id int UNIQUE,
-    constraint vendor_id_fk FOREIGN KEY (vendor_id) REFERENCES users(user_id)
-);
-
 
 #-------PRODUCT TABLE--------
 create table product
@@ -44,8 +29,7 @@ create table product
     product_description varchar(250),
     product_price int,
     product_size varchar(50),
-    brand_id int UNIQUE,
-    constraint brand_id_fk FOREIGN KEY (brand_id) REFERENCES brand(brand_id)
+    product_image varchar(100)
 );
 
 
