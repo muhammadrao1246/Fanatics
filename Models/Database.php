@@ -8,10 +8,10 @@ class Database
 
     function __construct() 
     {
-        $this->pdo = new PDO("mysql:host=localhost;dbname=fanatics;port=3308","root","");
+        $this->pdo = new PDO("mysql:host=localhost;dbname=fanatics","root","");
         
         $this->query("create table if not exists users (user_id int AUTO_INCREMENT, email_id varchar(100), username varchar(50), address varchar(200), contactNo varchar(20), user_password varchar(100), user_image varchar(100), CONSTRAINT user_id_primary_chk PRIMARY KEY (user_id), CONSTRAINT email_id_unique_chk UNIQUE (email_id));");
-        $this->query("create table if NOT EXISTS product (product_id int AUTO_INCREMENT PRIMARY KEY, product_name varchar(100) UNIQUE, product_description varchar(250), product_price int, product_size varchar(50), product_image varchar(100))");
+        $this->query("create table if NOT EXISTS product (product_id int AUTO_INCREMENT PRIMARY KEY, product_name varchar(100) UNIQUE, product_description varchar(250), product_price int, product_size varchar(50),product_quantity int,product_date varchar(20), product_image varchar(100),product_status int(1) default 1,user_id int,CONSTRAINT vendor_id_fk FOREIGN KEY (user_id) REFERENCES users(user_id))");
 
         // if ($this->get("count") == 0) 
         // {

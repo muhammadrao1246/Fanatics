@@ -15,11 +15,19 @@ var KTDatatableHtmlTableDemo = (function () {
       },
       columns: [
         {
-          field: "DepositPaid",
+          field: "Description",
+          type: "text"
+        },
+        {
+          field: "Price",
           type: "number",
         },
         {
-          field: "OrderDate",
+          field: "ID",
+          type: "number",
+        },
+        {
+          field: "Date",
           type: "date",
           format: "YYYY-MM-DD",
         },
@@ -34,7 +42,7 @@ var KTDatatableHtmlTableDemo = (function () {
               2: { title: "Disable", class: " kt-badge--danger" },
             };
             return (
-              '<span class="kt-badge ' +
+              '<span id="product_status_updater" style="cursor:pointer;" class="kt-badge ' +
               status[row.Status].class +
               ' kt-badge--inline kt-badge--pill">' +
               status[row.Status].title +

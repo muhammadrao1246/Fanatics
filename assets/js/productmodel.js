@@ -1,7 +1,53 @@
 "use strict";
 
 let data = "";
+let prod_id = null;
+let nflag = 0;
+let eflag = 0;
+let prod_form = document.getElementById("product_form");
 
+//When Adding New Product
+let new_product_button = document.getElementById("new_product");
+new_product_button.onclick = function()
+{
+  nflag = 1;
+  eflag = 0;
+  document.getElementsByClassName("kt-avatar__holder")[0].style.backgroundImage  = "url('../assets/media/products/default.png');";
+  prod_form.reset();
+  document.getElementById("form_manager").setAttribute("name","add_product");
+}
+
+//When User Clicks on Edit Button for specific product
+function edit_called(element) 
+{
+  nflag = 0;
+  eflag = 1;
+  prod_form.reset();
+  let trow= element.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousSibling;
+  prod_id = Number(trow.querySelector("td:nth-child(2)").innerText);
+
+  let formdata ;
+  let xhr = new XMLHttpRequest();
+  xhr.onload = function () 
+  {
+    formdata = JSON.parse(xhr.responseText);
+
+    document.getElementsByClassName("kt-avatar__holder")[0].style.backgroundImage  = "url('"+formdata["product_image"]+"')";
+    prod_form[2].value = formdata["product_name"];
+    prod_form[3].value = formdata["product_description"];
+    prod_form[4].value = formdata["product_size"];
+    prod_form[5].value = formdata["product_price"];
+    prod_form[6].value = formdata["product_quantity"];
+  }
+
+  xhr.open("GET", ("../Controllers/product/editProduct.php?id="+prod_id), true);
+  xhr.send();
+
+  document.getElementById("form_manager").setAttribute("name","edit_product");  
+}
+
+
+//Form handling Login Below
 window.addEventListener("load", (e) => {
   // Class Definition
   var KTProductGeneral = (function () {
@@ -34,18 +80,22 @@ window.addEventListener("load", (e) => {
         var form = $(this).closest("form");
 
         form.validate({
+          ignore: ":hidden",
           rules: {
             name: {
               required: true,
               pattern: "[a-zA-Z ]+",
             },
-
+            image:{
+              required:false
+            },
             description: {
               required: true,
+              maxlength: 100
             },
             size: {
               required: true,
-              //   pattern: "[small,large,medium,extra large]",
+              pattern: "((small)|(large)|(medium)|(extra large))",
             },
             price: {
               required: true,
@@ -82,51 +132,65 @@ window.addEventListener("load", (e) => {
           )
           .attr("disabled", true);
 
-        form.ajaxSubmit({
-          url: "Fanatics/Controllers/auth/SignUp_Controller.php",
-          success: function (response, status, xhr, $form) {
-            // similate 2s delay
-            setTimeout(function () {
-              btn
-                .removeClass(
-                  "kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light"
-                )
-                .attr("disabled", false);
+        //MY LOGIC
+        request = new XMLHttpRequest();
 
-              // display signup form
-              // displaySignInForm();
-              // var signInForm = login.find(".kt-login__signin form");
-              // signInForm.clearForm();
-              // signInForm.validate().resetForm();
+        var ProductForm = new FormData(document.getElementById("product_form"));
+        if(eflag) ProductForm.append("id",prod_id);
+        request.onload = function () 
+        {
+          // similate 2s delay
+          setTimeout(function () {
+            btn
+              .removeClass(
+                "kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light"
+              )
+              .attr("disabled", false);
 
-              if (xhr.responseText == "true") {
-                showErrorMsg(form, "success", "You've Signed in Successfully!");
-                form.clearForm();
-                form.validate().resetForm();
-                setTimeout(() => {
-                  window.location.href = "Fanatics/dashboard/";
-                }, 1500);
-              } else if (xhr.responseText == "password_check_failed")
-                showErrorMsg(
-                  form,
-                  "danger",
-                  "Passwords are Different. Please type again."
-                );
-              else if (xhr.responseText == "User_exists_already")
-                showErrorMsg(
-                  form,
-                  "danger",
-                  "Username Already Exists. Try Another."
-                );
-              else
-                showErrorMsg(
-                  form,
-                  "danger",
-                  "Some Error Happened. Please try Again."
-                );
-            }, 2000);
-          },
-        });
+            if (request.responseText == "100") {
+              showErrorMsg(
+                form,
+                "success",
+                "New product added Successfully!"
+              );
+              setTimeout(() => {
+                window.location.href = "../dashboard/";
+              }, 1500);
+            }
+            else if (request.responseText == "101") {
+              showErrorMsg(
+                form,
+                "success",
+                "Product details updated successfully!"
+              );
+              setTimeout(() => {
+                window.location.href = "../dashboard/";
+              }, 1500);
+            } 
+            else if(request.responseText == "Product Name Already Exists.")
+              showErrorMsg(form, "danger", "Product Name Already Exists.");
+            else if (request.responseText == "image_size_greater_than_1MB")
+              showErrorMsg(form, "danger", "Image size greater than 1 MB!  ");
+            else if (request.responseText == "image_mime_type_not_allowed")
+              showErrorMsg(
+                form,
+                "danger",
+                "Only JPG, PNG and JPEG image formats are supported. "
+              );
+            else
+              showErrorMsg(
+                form,
+                "danger",
+                "Some Error Happened. Please try Again."
+              );
+          }, 2000);
+        };
+        request.open(
+          "POST",
+          "../Controllers/product/Product_Controller.php",
+          true
+        );
+        request.send(ProductForm);
       });
     };
 

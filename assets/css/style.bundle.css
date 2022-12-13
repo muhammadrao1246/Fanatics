@@ -32396,7 +32396,7 @@ strong {
   > .kt-datatable__table
   > .kt-datatable__foot
   .kt-datatable__row
-  > .kt-datatable__cell.kt-datatable__cell--left {
+  > ..kt-datatable__cell--left {
   text-align: left;
 }
 .kt-datatable.kt-datatable--default

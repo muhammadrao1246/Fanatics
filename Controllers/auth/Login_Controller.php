@@ -17,7 +17,7 @@ if(isset($_GET['login']))
     {
         if ( password_verify($password, $database->get('user_password')) ) 
         {
-            $_SESSION = ["emailid"=> $email_id, "username"=> $database->get("username"), "address"=> $database->get("address"), "contactno"=> $database->get("contactNo"),"image"=>$database->get("user_image")];
+            $_SESSION = ["id"=>$database->get("user_id"),"emailid"=> $email_id, "username"=> $database->get("username"), "address"=> $database->get("address"), "contactno"=> $database->get("contactNo"),"image"=>$database->get("user_image")];
             echo "true";
         }
         else
