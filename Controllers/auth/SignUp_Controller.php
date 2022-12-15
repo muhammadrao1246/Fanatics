@@ -1,9 +1,9 @@
 <?php
 
 
-include "../Models/Database.php";
+include "../../Models/Database.php";
 
-
+session_start();
 
 $database = new Database();
 
@@ -14,20 +14,22 @@ try
         $email_id = $_GET['email'];
         $username = $_GET['fullname'];
         $address = $_GET['address'];
+        $code = $_GET['country_code'];
         $contactNo = $_GET['contactNo'];
-        $is_vendor = isset($_GET['isVendor']) ? $_GET['isVendor'] : 0;
         $new_password = $_GET['password'];
         $confirm_password = $_GET['rpassword'];
 
-        $database->query("SELECT * FROM USERS WHERE email_id = '$email_id';");
+        $database->query("SELECT * FROM users WHERE email_id = '$email_id';");
         
         if ( !$database->next() ) 
         {
             
             if ( $new_password === $confirm_password ) 
             {
-                $database->query("INSERT INTO USERS VALUES (null,'$email_id','$username','$address','$contactNo','".password_hash($new_password,PASSWORD_DEFAULT)."',$is_vendor)");
-                $_SESSION =  ["emailid"=> $email_id, "username"=> $username, "address"=> $address, "contactno"=> $contactNo] ;
+                $database->query("INSERT INTO users VALUES (null,'$email_id','$username','$address','".$code.$contactNo."','".password_hash($new_password,PASSWORD_DEFAULT)."',\"../assets/media/users/default.jpg\")");
+                $database->query("SELECT * FROM users WHERE email_id = '$email_id';");
+                $database->next();           
+                $_SESSION =  [ "id"=>$database->get("user_id"),"emailid"=> $email_id, "username"=> $username, "address"=> $address, "contactno"=> $contactNo,"image"=>"../assets/media/users/default.jpg"] ;
                 echo "true";
             }
             else

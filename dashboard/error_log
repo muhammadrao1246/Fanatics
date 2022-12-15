@@ -1,0 +1,32 @@
+[15-Dec-2022 10:02:00 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/dashboard.phtml(2): Database->__construct()
+#3 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/dashboard/index.php(20): include('/home/x0211ec0u...')
+#4 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 10:02:29 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/dashboard.phtml(2): Database->__construct()
+#3 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/dashboard/index.php(20): include('/home/x0211ec0u...')
+#4 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 10:03:09 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/dashboard.phtml(2): Database->__construct()
+#3 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/dashboard/index.php(20): include('/home/x0211ec0u...')
+#4 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 10:05:58 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/dashboard.phtml(2): Database->__construct()
+#3 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/dashboard/index.php(20): include('/home/x0211ec0u...')
+#4 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61

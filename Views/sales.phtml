@@ -1,0 +1,210 @@
+<?php
+try{
+$from = $to = "";
+$database = new Database();
+$check = "dasdasd";
+if (isset($_SESSION["username"])) 
+{
+
+    $current_time = date("Y-m-d H:i:s");
+    $one_month =  date_create($current_time);
+    date_sub($one_month, date_interval_create_from_date_string("6 months"));
+    $one_month = date_format($one_month, "Y-m-d H:i:s");
+    $from = $one_month;
+    $to = $current_time;
+
+    $database->query("SELECT * from sales_detail where user_id = '" . $_SESSION["id"] . "' and order_date >= '" . $one_month . "' and order_date <= '" . $current_time . "' ORDER BY order_date DESC;");
+    if (isset($_POST["start"]) && isset($_POST["end"])) 
+    {
+        $data1 = $data2 = "";
+        $date1 = $_POST["start"];
+        $date2 = $_POST["end"];
+
+        $data1 = strtotime($data1);
+        $data2 = strtotime($data2);
+
+        $data1 = date("Y-m-d H:i:s", $data1);
+        $data2 = date("Y-m-d H:i:s", $data2);
+
+        $from = $date1;
+        $to = $date2;
+
+        $check = (strtotime($date1) <= strtotime($date2))  ? true : false;
+        if ($check) 
+        {
+            $database->query("SELECT * from sales_detail where user_id = '" . $_SESSION["id"] . "' and order_date >= '" . $date1 . "' and order_date <= '" . $date2 . "';");
+        }
+    }
+    
+?>
+
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+        <!-- begin:: Content -->
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
+
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg">
+                    <div class="kt-portlet__head-label">
+                        <span class="kt-portlet__head-icon">
+                            <i class="kt-font-brand flaticon2-line-chart"></i>
+                        </span>
+                        <h3 class="kt-portlet__head-title">
+                            Sales
+                            <small>All Products Sale Detail</small>
+                        </h3>
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+
+                    <!--begin: Search Form -->
+                    <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+                        <form action="../sales/" method="POST" id="date_form">
+                            <div class="row align-items-center">
+                                <div class="col-xl-8 order-2 order-xl-1">
+
+                                    <div class="row align-items-center" style="margin-bottom: 0.5em;column-gap: 3em;row-gap: 1em;">
+                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+                                            <div class="kt-input-icon kt-input-icon--left">
+                                                <input type="text" class="form-control" placeholder="Search..." id="ingeneralSearch">
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                                    <span><i class="la la-search"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+                                        <div class="kt-form__group kt-form__group--inline">
+                                            <div class="kt-form__label">
+                                                <label>Status:</label>
+                                            </div>
+                                            <div class="kt-form__control">
+                                                <select class="form-control bootstrap-select" id="kt_form_status">
+                                                    <option value="">All</option>
+                                                    <option value="1">Enable</option>
+                                                    <option value="2">Disable</option>
+                                                    <option value="3">Updated</option>
+                                                    <option value="4">Deleted</option>
+                                                    <option value="5">Added</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                     </div> -->
+                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+                                            <div class="kt-form__group kt-form__group--inline">
+                                                <div class="kt-form__label">
+                                                    <label>From:</label>
+                                                </div>
+                                                <div class="kt-form__control">
+                                                    <input type="datetime-local" class="form-control" value="<?php echo date("Y-m-d\TH:i", strtotime($from)); ?>" name="start" required>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile" >
+                                            <div class="kt-form__group kt-form__group--inline">
+                                                <div class="kt-form__label">
+                                                    <label>To:</label>
+                                                </div>
+                                                <div class="kt-form__control">
+
+                                                    <input type="datetime-local" class="form-control" value="<?php echo date("Y-m-d\TH:i", strtotime($to)); ?>" name="end" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+                                            <div class="kt-form__group kt-form__group--inline">
+                                                <div class="kt-form__control">
+                                                    <input type="submit" class="btn btn-outline-primary" name="submit" value="Apply Date Filters">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center" style="margin-bottom: 0.5em;column-gap: 3em;row-gap: 1em;">
+                                        <?php
+                                        if($check == true)
+                                        {?>
+                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                            <div class="alert-text">
+                                                Date Filter Applied On Details.                        
+                                            </div>
+                                            <div class="alert-close">
+                                                <i class="flaticon2-cross kt-icon-sm" data-dismiss="alert"></i>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        }
+                                        elseif($check == false)
+                                        {?>
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            <div class="alert-text">
+                                                Date Ranges are Incorrect.                        
+                                            </div>
+                                            <div class="alert-close">
+                                                <i class="flaticon2-cross kt-icon-sm" data-dismiss="alert"></i>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--end: Search Form -->
+            </div>
+            <div class="kt-portlet__body kt-portlet__body--fit">
+
+                <!--begin: Datatable -->
+                <table class="kt-datatable" id="html_table" width="100%">
+                    <thead>
+                        <tr>
+                            <th title="Field #1">ID</th>
+                            <th title="Field #2">Name</th>
+                            <th title="Field #3">Dates</th>
+                            <th title="Field #4">Per Unit Price</th>
+                            <th title="Field #5">Items Sold</th>
+                            <th title="Field #6">Total Purchase Amount</th>
+                            <th title="Field #7">Order ID</th>
+                            
+                            <!-- <th title="Field #8">Type</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($database->next()) 
+                        {
+                        ?>
+                            <tr>
+                                <td><?= $database->get("product_id") ?></td>
+                                <td> <?= $database->get("product_name") ?> </td>
+                                <td> <?= date("Y-m-d h:i:s A", strtotime($database->get("order_date"))) ?> </td>
+                                <td> <?= $database->get("per_unit_price") ?> </td>
+                                <td> <?= $database->get("product_quantity") ?> </td>
+                                <td> <?= $database->get("total_amount") ?> </td>
+                                <td> <?= $database->get("order_id") ?> </td>
+
+                                <!-- <td align="right">3</td> -->
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+
+                <!--end: Datatable -->
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Content -->
+<?php
+}
+}
+catch(Exception $e)
+{
+    echo $e->getMessage();
+}

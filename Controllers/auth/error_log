@@ -1,0 +1,23 @@
+[14-Dec-2022 13:57:28 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CURRENT_DATE,
+            modify_status varchar(30),
+            product_quantit' at line 5 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(15): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/auth/Login_Controller.php(5): Database->__construct()
+#3 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[14-Dec-2022 14:00:20 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS fullaudit as select audit.audit_id as id, audit.user_id as user_id' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(25): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/auth/Login_Controller.php(5): Database->__construct()
+#3 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[14-Dec-2022 14:00:57 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS fullaudit as select audit.audit_id as id, audit.user_id as user_id' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(25): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/auth/Login_Controller.php(5): Database->__construct()
+#3 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61

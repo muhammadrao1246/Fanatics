@@ -1,0 +1,30 @@
+[14-Dec-2022 17:09:11 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 18
+[14-Dec-2022 17:09:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 18
+[14-Dec-2022 17:09:11 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 72
+[14-Dec-2022 17:11:26 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 17
+[14-Dec-2022 17:11:26 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 17
+[15-Dec-2022 09:46:59 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 17
+[15-Dec-2022 09:46:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 17
+[15-Dec-2022 09:59:33 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/Product_Controller.php(7): Database->__construct()
+#3 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 09:59:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/Product_Controller.php(7): Database->__construct()
+#3 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 10:00:18 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/Product_Controller.php(7): Database->__construct()
+#3 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 10:09:14 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 17
+[15-Dec-2022 10:09:14 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Controllers/product/deleteProduct.php on line 17

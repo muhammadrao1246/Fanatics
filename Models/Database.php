@@ -10,35 +10,52 @@ class Database
     {
         $this->pdo = new PDO("mysql:host=localhost;dbname=fanatics","root","");
         
-        $this->query("create table if not exists USERS (user_id int AUTO_INCREMENT, email_id varchar(100), address varchar(200), contactNo varchar(20), user_password varchar(100), is_vendor int(1) default 0, CONSTRAINT user_id_primary_chk PRIMARY KEY (user_id), CONSTRAINT email_id_unique_chk UNIQUE (email_id));");
-        $this->query("create table if not EXISTS brand (brand_id int AUTO_INCREMENT PRIMARY KEY, brand_name varchar(100) UNIQUE, brand_description varchar(250), vendor_id int UNIQUE, constraint vendor_id_fk FOREIGN KEY (vendor_id) REFERENCES users(user_id));");
-        $this->query("create table if NOT EXISTS product (product_id int AUTO_INCREMENT PRIMARY KEY, product_name varchar(100) UNIQUE, product_description varchar(250), product_price int, product_size varchar(50), brand_id int UNIQUE, constraint brand_id_fk FOREIGN KEY (brand_id) REFERENCES brand(brand_id));");
+        $this->query("create table if not exists users (user_id int AUTO_INCREMENT, email_id varchar(100), username varchar(50), address varchar(200), contactNo varchar(20), user_password varchar(100), user_image varchar(100), CONSTRAINT user_id_primary_chk PRIMARY KEY (user_id), CONSTRAINT email_id_unique_chk UNIQUE (email_id));");
+        $this->query("create table if not exists product (product_id int AUTO_INCREMENT PRIMARY KEY, product_name varchar(100), product_description varchar(250), product_price int, product_size varchar(50),product_quantity int,product_date datetime default current_timestamp, product_image varchar(100),product_status int(1) default 1,user_id int);");
+        $this->query("CREATE TABLE if not exists audit 
+        (
+            audit_id int AUTO_INCREMENT PRIMARY KEY,
+            product_id int,
+            modify_date datetime DEFAULT current_timestamp,
+            modify_status varchar(30),
+            product_quantity int,
+            `user_id` int
+        );");
+        $this->query("CREATE table if not exists orders 
+        (
+            order_id int AUTO_INCREMENT primary key,
+            order_date datetime default CURRENT_TIMESTAMP,
+            customer_id int
+        )");
+        $this->query("CREATE table if not exists products_per_order 
+        (
+            order_id int,
+            product_id int,
+            product_quantity int,
+            product_price int,
+            constraint order_id_fk foreign key (order_id) references orders(order_id)
+        )");
+        
+        $this->query("create view IF NOT EXISTS fullaudit as select audit.audit_id as id, audit.user_id as user_id, product.product_id as product_id, product.product_name as name, product.product_description as description, product.product_price as price, product.product_size as size, audit.product_quantity as quantity, product.product_image as image, audit.modify_date as perdate, audit.modify_status as status from audit,product where audit.product_id = product.product_id;");
 
-        // if ($this->get("count") == 0) 
-        // {
-        //     $this->transaction();
+        $this->query("CREATE VIEW IF NOT EXISTS sales_detail as select product.user_id as user_id, orders.order_id as order_id, products_per_order.product_id as product_id, product.product_name as product_name, product.product_image as product_image, product.product_price as per_unit_price, products_per_order.product_quantity as product_quantity, (product.product_price * products_per_order.product_quantity) as total_amount, orders.order_date as order_date from products_per_order,orders,product where orders.order_id = products_per_order.order_id and products_per_order.product_id = product.product_id;");
+        
+        sleep(1);
+        $this->query("SELECT COUNT(*) AS `count` FROM `orders`");
+        $this->next();
+        if ($this->get("count") == 0) 
+        {
+            $this->transaction();
 
-        //     // Add an obligatory charger and two obligatory users
-        //     $charger = $this->query("INSERT INTO `chargers`(`address`, `latitude`, `longitude`, `price`) VALUES(?, ?, ?, ?)", "5 The Cresent, Salford, M5 4WT", 53.483710, -2.270110, 0.25);
-        //     $this->query("INSERT INTO `users`(`username`, `name`, `password_hash`, `charger`) VALUES(?, ?, ?, ?)", "lee@lee.com", "Lee Griffiths", sha1(123456), $charger);
-        //     $this->query("INSERT INTO `users`(`username`, `name`, `password_hash`) VALUES(?, ?, ?)", "user@user.com", "User Lee Griffiths", sha1(123456));
-
-        //     // Add mock chargers and mock users
-        //     $charger_ids = [];
-        //     foreach (json_decode(file_get_contents("mock_chargers.json")) as $charger)
-        //         $charger_ids[] = $this->query("INSERT INTO `chargers`(`address`, `latitude`, `longitude`, `price`) VALUES(?, ?, ?, ?)", $charger->address, $charger->latitude, $charger->longitude, $charger->price);
-        //     foreach (json_decode(file_get_contents("mock_users_clients.json")) as $user)
-        //         $this->query("INSERT INTO `users`(`username`, `name`, `password_hash`) VALUES(?, ?, ?)", $user->username, $user->name, sha1($user->password));
-        //     $i = 0;
-        //     foreach (json_decode(file_get_contents("mock_users_providers.json")) as $user)
-        //         $this->query("INSERT INTO `users`(`username`, `name`, `password_hash`, `charger`) VALUES(?, ?, ?, ?)", $user->username, $user->name, sha1($user->password), $charger_ids[$i++]);
-
-        //     // Update All Users Status to (Owner , Rentel) => ( 1 , 0 )
-        //     $this->query("update users set is_owner = 1 where charger is not null;"); //setting all charger holder as owner by assigning "is_owner" column '1'
+            // Add mock chargers and mock users
+            foreach (json_decode(file_get_contents("../../Models/ordersjson.json")) as $order)
+                $this->query("INSERT INTO `orders` (`order_id`, `order_date`, `customer_id`) VALUES($order->order_id, \"".date("Y-m-d H:i:s", strtotime($order->order_date))."\", $order->customer_id)");
+            foreach (json_decode(file_get_contents("../../Models/products_per_orderjson.json")) as $ordered)
+                $this->query("INSERT INTO `products_per_order`(`order_id`, `product_id`, `product_quantity`, `product_price`) VALUES(?, ?, ?, ?)", $ordered->order_id, $ordered->product_id, $ordered->product_quantity, $ordered->product_price);
             
-        //     $this->commit();
-        // }
-
+            
+            $this->commit();
+        }
     }
 
     // Begin a transaction
@@ -77,7 +94,11 @@ class Database
     }
 
     // Go to the next row (return true if exists)
-    function next() {
+    function next() 
+    {
+        // if( $this->result )
+        // return ($this->row = $this->result->fetch(PDO::FETCH_ASSOC));
+        // else return false;
         return $this->row = $this->result->fetch(PDO::FETCH_ASSOC);
     }
 

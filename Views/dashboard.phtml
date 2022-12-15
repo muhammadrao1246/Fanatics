@@ -1,0 +1,302 @@
+<?php
+$database = new Database();
+$database->query("SELECT * from product where `user_id` = '".$_SESSION["id"]."' and `product_status` != 0 ORDER BY product_id DESC;")
+
+?>
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+	<!-- begin:: Content -->
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
+
+		<div class="kt-portlet kt-portlet--mobile">
+			<div class="kt-portlet__head kt-portlet__head--lg">
+				<div class="kt-portlet__head-label">
+					<span class="kt-portlet__head-icon">
+						<i class="kt-font-brand flaticon2-line-chart"></i>
+					</span>
+					<h3 class="kt-portlet__head-title">
+						Product
+						<small>List All Products here</small>
+					</h3>
+				</div>
+				<div class="kt-portlet__head-toolbar">
+					<div class="kt-portlet__head-wrapper">
+						<div class="kt-portlet__head-actions">
+							<a id="new_product" href="#" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addProductModal">
+								<i class="la la-plus"></i>
+								New Product
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="kt-portlet__body">
+
+				<!--begin: Search Form -->
+				<div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+					<div class="row align-items-center">
+						<div class="col-xl-8 order-2 order-xl-1">
+							<div class="row align-items-center">
+								<div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+									<div class="kt-input-icon kt-input-icon--left">
+										<input type="text" class="form-control" placeholder="Search..." id="generalSearch">
+										<span class="kt-input-icon__icon kt-input-icon__icon--left">
+											<span><i class="la la-search"></i></span>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+									<div class="kt-form__group kt-form__group--inline">
+										<div class="kt-form__label">
+											<label>Status:</label>
+										</div>
+										<div class="kt-form__control">
+											<select class="form-control bootstrap-select" id="kt_form_status">
+												<option value="">All</option>
+												<option value="1">Enable</option>
+												<option value="2">Disable</option>
+											</select>
+										</div>
+									</div>
+									<!-- </div>
+													<div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+														<div class="kt-form__group kt-form__group--inline">
+															<div class="kt-form__label">
+																<label>Type:</label>
+															</div>
+															<div class="kt-form__control">
+																<select class="form-control bootstrap-select" id="kt_form_type">
+																	<option value="">All</option>
+																	<option value="1">Online</option>
+																	<option value="2">Retail</option>
+																	<option value="3">Direct</option>
+																</select>
+															</div>
+														</div>
+													</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--end: Search Form -->
+				</div>
+				<div class="kt-portlet__body kt-portlet__body--fit">
+
+					<!--begin: Datatable -->
+					<table class="kt-datatable" id="html_table" width="100%">
+						<thead>
+							<tr>
+								<th title="Field #1">ID</th>
+								<!-- <th title="Field #2">Image</th> -->
+								<th title="Field #3">Name</th>
+								<!-- <th title="Field #4">Description</th> -->
+								<th id="sized" title="Field #5">Size</th>
+								<th title="Field #6">Price</th>
+								<th title="Field #7">Date</th>
+								<th title="Field #8">Status</th>
+								<th title="Field #9">Actions</th>
+								<!-- <th title="Field #8">Type</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							while ($database->next()) {
+							?>
+								<tr>
+									<td><?= $database->get("product_id") ?></td>
+									<!-- <td> </td> -->
+									<td>
+										<div class="kt-user-card-v2">
+											<div class="kt-user-card-v2__pic ">
+												<img src="<?= ($database->get("product_image") != null) ? $database->get("product_image") : '../assets/media/products/default.png' ?>" alt="Pic">
+											</div>
+											<div class="kt-user-card-v2__details">
+												<a href="../dashboard/?product_id=<?= $database->get("product_id") ?>">
+													<span class="kt-user-card-v2__name text-truncate" style="font-size:0.9em;max-width:70px;"><?= $database->get("product_name") ?></span>
+													<div class="kt-user-card-v2__email kt-link " style="max-width:100px;display:none;"><?= $database->get("product_description") ?></div>
+												</a>
+											</div>
+										</div>
+									</td>
+									<!-- <td></td> -->
+									<td><?= $database->get("product_size") ?></td>
+									<td>$<?= $database->get("product_price") ?></td>
+									<td> <?= date("Y-m-d h:i:s A", strtotime($database->get("product_date"))) ?> </td>
+									<td align="right"> <?= $database->get("product_status") ?> </td>
+									<td data-field="Actions" data-autohide-disabled="false" class="kt-datatable__cell">
+										<span style="overflow: visible; position: relative; width: 110px;">
+
+											<a style="cursor:pointer;" title="<?= $database->get("product_status") == 1 ? "Disable" : "Enable" ?> Now" onclick="disable_call(this)" data-value="<?= $database->get("product_status") == 1 ? "2" : "1" ?>">
+												<?= $database->get("product_status") == 1 ? "Disable" : "Enable" ?>
+											</a>
+											<a title="Edit details" onclick="edit_called(this)" data-toggle="modal" data-target="#addProductModal" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+												<i class="la la-edit"></i>
+											</a>
+											<a title="Delete" onclick="delete_call(this)" class="btn btn-sm btn-clean btn-icon btn-icon-md">
+												<i class="la la-trash"></i>
+											</a>
+										</span>
+									</td>
+									<!-- <td align="right">3</td> -->
+								</tr>
+							<?php
+							}
+							?>
+						</tbody>
+					</table>
+
+					<!--end: Datatable -->
+				</div>
+			</div>
+		</div>
+
+		<!-- end:: Content -->
+	</div>
+	<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addProductModalLabel">Product</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+				<form action="" id="product_form">
+					<input type="hidden" name="" value="1" id="form_manager">
+					<div class="modal-body">
+						<div class="kt-form kt-form--label-right">
+							<div class="kt-form__body">
+								<div class="kt-section kt-section--first">
+									<div class="kt-section__body">
+										<div class="form-group row">
+											<label class="col-xl-3 col-lg-3 col-form-label">Image</label>
+											<div class="col-lg-9 col-xl-6">
+												<div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_user_edit_avatar">
+													<div style="background-image: url('../assets/media/products/default.png');" class="kt-avatar__holder"></div>
+													<label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+														<i class="fa fa-pen"></i>
+														<input type="file" name="image" accept="image/*">
+													</label>
+													<span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+														<i class="fa fa-times"></i>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-xl-3 col-lg-3 col-form-label">Name</label>
+											<div class="col-lg-9 col-xl-6">
+												<input class="form-control" type="text" placeholder="Enter Product Name" name="name">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-xl-3 col-lg-3 col-form-label">Description</label>
+											<div class="col-lg-9 col-xl-6">
+												<textarea class="form-control" name="description" id="exampleTextarea" rows="2"></textarea>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-xl-3 col-lg-3 col-form-label">Size</label>
+											<div class="col-lg-9 col-xl-6">
+												<input class="form-control" type="text" name="size" placeholder="small, medium, large, extra large">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-xl-3 col-lg-3 col-form-label">price</label>
+											<div class="col-lg-9 col-xl-6">
+												<input class="form-control" name="price" type="text" placeholder="120.3">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-xl-3 col-lg-3 col-form-label">Quantity</label>
+											<div class="col-lg-9 col-xl-6">
+												<input class="form-control" name="qty" type="number" placeholder="20">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-brand btn-elevate kt-login__btn-primary" id="kt_product_submit">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<?php
+if ( isset($_GET["product_id"]) && "".$_GET["product_id"]!= "NaN") 
+{
+	$database = new Database();
+	$database->query("SELECT * from `product` where product_id ='".$_GET['product_id']."';");
+	$database->next();
+?>
+	<div class="modal fade" style="backdrop-filter: brightness(0.5);" id="viewProductModal" tabindex="-1" role="dialog" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width:70%;margin:auto;">
+				<div class="modal-header">
+					<h5 class="modal-title" id="viewProductModalLabel">Product # <?=$_GET["product_id"]?></h5>
+					<button type="button" onclick="disable_view_modal()" class="close" data-dismiss="modal" aria-label="Close">
+					</button>
+				</div>
+				<div class="kt-portlet kt-portlet--height-fluid">
+					<div class="kt-portlet__body">
+
+						<!--begin::Widget -->
+						<div class="kt-widget kt-widget--user-profile-2" style="row-gap: 1.5em;">
+							<div class="kt-widget__head" style="margin-top:0;">
+								<div class="kt-widget__media">
+									<img class="kt-widget__img kt-hidden-" id="viewinput1" src="<?= $database->get("product_image")?>" alt="image">
+									<div class="kt-widget__pic kt-widget__pic--success kt-font-success kt-font-boldest kt-hidden">
+										ChS
+									</div>
+								</div>
+								<div class="kt-widget__info">
+									<div class="kt-widget__username" id="viewinput2">
+										<?= ucwords($database->get("product_name"))?>
+									</div>
+								</div>
+							</div>
+							<div class="kt-widget__section" style="line-break:anywhere;overflow:hidden;">
+										<span class="kt-widget__label"><?= ucfirst($database->get("product_description"))?></span>
+							</div>
+							<div class="kt-widget__body">
+								<div class="kt-widget__item">
+									
+									<div class="kt-widget__contact">
+										<span class="kt-widget__label">Size:</span>
+										<a href="#" class="kt-widget__data"><?= ucwords($database->get("product_size"))?></a>
+									</div>
+									<div class="kt-widget__contact">
+										<span class="kt-widget__label">Quantity:</span>
+										<a href="#" class="kt-widget__data"><?= $database->get("product_quantity")?> pieces left</a>
+									</div>
+									<div class="kt-widget__contact">
+										<span class="kt-widget__label">Date:</span>
+										<a href="#" class="kt-widget__data"><?= $database->get("product_date")?></a>
+									</div>
+									<div class="kt-widget__contact">
+										<span class="kt-widget__label">Price:</span>
+										<span class="kt-widget__data">$<?= $database->get("product_price")?></span>
+									</div>
+								</div>
+							</div>
+							<div class="kt-widget__footer">
+								<button type="button" class="btn btn-label-<?= $database->get("product_status") == 1 ? "success" : "danger" ?> btn-lg btn-upper"><?= $database->get("product_status") == 1 ? "Enabled" : "Disabled" ?></button>
+							</div>
+						</div>
+
+						<!--end::Widget -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php
+
+}
+
+?>

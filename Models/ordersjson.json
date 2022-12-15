@@ -1,0 +1,252 @@
+[
+  {
+    "order_id": 1,
+    "order_date": "1/21/2022 4:52",
+    "customer_id": 86
+  },
+  {
+    "order_id": 2,
+    "order_date": "6/10/2022 23:06",
+    "customer_id": 94
+  },
+  {
+    "order_id": 3,
+    "order_date": "3/24/2022 10:23",
+    "customer_id": 97
+  },
+  {
+    "order_id": 4,
+    "order_date": "10/20/2022 3:53",
+    "customer_id": 68
+  },
+  {
+    "order_id": 5,
+    "order_date": "10/8/2022 21:19",
+    "customer_id": 49
+  },
+  {
+    "order_id": 6,
+    "order_date": "1/11/2022 2:24",
+    "customer_id": 47
+  },
+  {
+    "order_id": 7,
+    "order_date": "6/4/2022 19:34",
+    "customer_id": 100
+  },
+  {
+    "order_id": 8,
+    "order_date": "3/18/2022 17:25",
+    "customer_id": 48
+  },
+  {
+    "order_id": 9,
+    "order_date": "11/2/2022 1:10",
+    "customer_id": 66
+  },
+  {
+    "order_id": 10,
+    "order_date": "4/27/2022 6:46",
+    "customer_id": 98
+  },
+  {
+    "order_id": 11,
+    "order_date": "7/23/2022 14:53",
+    "customer_id": 95
+  },
+  {
+    "order_id": 12,
+    "order_date": "8/21/2022 19:41",
+    "customer_id": 27
+  },
+  {
+    "order_id": 13,
+    "order_date": "7/12/2022 16:30",
+    "customer_id": 18
+  },
+  {
+    "order_id": 14,
+    "order_date": "11/22/2022 0:15",
+    "customer_id": 13
+  },
+  {
+    "order_id": 15,
+    "order_date": "6/23/2022 3:45",
+    "customer_id": 39
+  },
+  {
+    "order_id": 16,
+    "order_date": "1/24/2022 7:05",
+    "customer_id": 99
+  },
+  {
+    "order_id": 17,
+    "order_date": "10/7/2022 19:06",
+    "customer_id": 55
+  },
+  {
+    "order_id": 18,
+    "order_date": "3/24/2022 3:41",
+    "customer_id": 63
+  },
+  {
+    "order_id": 19,
+    "order_date": "5/23/2022 23:05",
+    "customer_id": 63
+  },
+  {
+    "order_id": 20,
+    "order_date": "8/31/2022 10:55",
+    "customer_id": 43
+  },
+  {
+    "order_id": 21,
+    "order_date": "5/2/2022 16:09",
+    "customer_id": 76
+  },
+  {
+    "order_id": 22,
+    "order_date": "7/18/2022 10:56",
+    "customer_id": 51
+  },
+  {
+    "order_id": 23,
+    "order_date": "1/17/2022 14:18",
+    "customer_id": 60
+  },
+  {
+    "order_id": 24,
+    "order_date": "12/27/2021 10:06",
+    "customer_id": 40
+  },
+  {
+    "order_id": 25,
+    "order_date": "11/1/2022 2:44",
+    "customer_id": 17
+  },
+  {
+    "order_id": 26,
+    "order_date": "3/1/2022 2:02",
+    "customer_id": 36
+  },
+  {
+    "order_id": 27,
+    "order_date": "8/5/2022 13:34",
+    "customer_id": 4
+  },
+  {
+    "order_id": 28,
+    "order_date": "1/10/2022 5:03",
+    "customer_id": 28
+  },
+  {
+    "order_id": 29,
+    "order_date": "7/29/2022 15:57",
+    "customer_id": 72
+  },
+  {
+    "order_id": 30,
+    "order_date": "5/1/2022 7:16",
+    "customer_id": 60
+  },
+  {
+    "order_id": 31,
+    "order_date": "8/22/2022 1:18",
+    "customer_id": 34
+  },
+  {
+    "order_id": 32,
+    "order_date": "8/29/2022 10:28",
+    "customer_id": 52
+  },
+  {
+    "order_id": 33,
+    "order_date": "8/26/2022 1:19",
+    "customer_id": 62
+  },
+  {
+    "order_id": 34,
+    "order_date": "2/11/2022 17:38",
+    "customer_id": 55
+  },
+  {
+    "order_id": 35,
+    "order_date": "8/22/2022 1:56",
+    "customer_id": 90
+  },
+  {
+    "order_id": 36,
+    "order_date": "12/18/2021 0:53",
+    "customer_id": 1
+  },
+  {
+    "order_id": 37,
+    "order_date": "4/14/2022 18:27",
+    "customer_id": 16
+  },
+  {
+    "order_id": 38,
+    "order_date": "3/20/2022 0:32",
+    "customer_id": 43
+  },
+  {
+    "order_id": 39,
+    "order_date": "5/13/2022 19:28",
+    "customer_id": 19
+  },
+  {
+    "order_id": 40,
+    "order_date": "1/11/2022 5:42",
+    "customer_id": 60
+  },
+  {
+    "order_id": 41,
+    "order_date": "2/18/2022 12:03",
+    "customer_id": 55
+  },
+  {
+    "order_id": 42,
+    "order_date": "11/3/2022 22:22",
+    "customer_id": 68
+  },
+  {
+    "order_id": 43,
+    "order_date": "5/26/2022 16:07",
+    "customer_id": 17
+  },
+  {
+    "order_id": 44,
+    "order_date": "10/13/2022 6:04",
+    "customer_id": 98
+  },
+  {
+    "order_id": 45,
+    "order_date": "7/4/2022 17:26",
+    "customer_id": 44
+  },
+  {
+    "order_id": 46,
+    "order_date": "10/2/2022 5:43",
+    "customer_id": 25
+  },
+  {
+    "order_id": 47,
+    "order_date": "5/25/2022 20:42",
+    "customer_id": 42
+  },
+  {
+    "order_id": 48,
+    "order_date": "3/5/2022 17:46",
+    "customer_id": 10
+  },
+  {
+    "order_id": 49,
+    "order_date": "5/11/2022 1:58",
+    "customer_id": 13
+  },
+  {
+    "order_id": 50,
+    "order_date": "3/8/2022 6:33",
+    "customer_id": 13
+  }
+]

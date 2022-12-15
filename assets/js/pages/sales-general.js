@@ -3,7 +3,6 @@
 
 var KTDatatableHtmlTableDemo = (function () {
   // Private functions
-var date1,date2;
 
   // demo initializer
   var demo = function () {
@@ -12,12 +11,12 @@ var date1,date2;
         saveState: { cookie: false },
       },
       search: {
-        input: $("#generalSearch"),
+        input: $("#ingeneralSearch"),
       },
       columns: [
         {
           field: "Description",
-          type: "text"
+          type: "text",
         },
         {
           field: "Price",
@@ -28,34 +27,32 @@ var date1,date2;
           type: "number",
         },
         {
-          field: "Date",
+          field: "Dates",
           type: "date",
           format: "YYYY-MM-DD",
         },
         {
-          field: "Dates",
-          type: "date",
-          format: "MM/DD/YYYY"
-        },
-        {
-          field: "Status",
-          title: "Status",
-          autoHide: false,
+          //   field: "Statuss",
+          //   title: "Status",
+          //   autoHide: false,
           // callback function support for column rendering
-          template: function (row) {
-            var status = {
-              1: { title: "Enable", class: " kt-badge--success" },
-              2: { title: "Disable", class: " kt-badge--danger" },
-              3: { title: "Updated", class: " kt-badge--warning" }
-            };
-            return (
-              '<span class="kt-badge ' +
-              status[row.Status].class +
-              ' kt-badge--inline kt-badge--pill">' +
-              status[row.Status].title +
-              "</span>"
-            );
-          },
+          //   template: function (row) {
+          //     var status = {
+          //       1: { title: "Enable", class: " kt-badge--success" },
+          //       2: { title: "Disable", class: " kt-badge--danger" },
+          //       3: { title: "Updated", class: " kt-badge--warning" },
+          //       4: { title: "Deleted", class: " kt-badge--danger" },
+          //       5: { title: "Added", class: " kt-badge--dark" }
+          //     };
+          // return
+          // (
+          //   '<span class="kt-badge ' +
+          //   status[row.Status].class +
+          //   ' kt-badge--inline kt-badge--pill">' +
+          //   status[row.Status].title +
+          //   "</span>"
+          // );
+          //   },
         },
         {
           field: "Type",
@@ -68,15 +65,15 @@ var date1,date2;
               2: { title: "Retail", state: "primary" },
               3: { title: "Direct", state: "success" },
             };
-            return (
-              '<span class="kt-badge kt-badge--' +
-              status[row.Type].state +
-              ' kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-' +
-              status[row.Type].state +
-              '">' +
-              status[row.Type].title +
-              "</span>"
-            );
+            // return (
+            //   '<span class="kt-badge kt-badge--' +
+            //   status[row.Type].state +
+            //   ' kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-' +
+            //   status[row.Type].state +
+            //   '">' +
+            //   status[row.Type].title +
+            //   "</span>"
+            // );
           },
         },
       ],
@@ -89,9 +86,6 @@ var date1,date2;
     $("#kt_form_type").on("change", function () {
       datatable.search($(this).val().toLowerCase(), "Type");
     });
-
-
-    
 
     $("#kt_form_status,#kt_form_type").selectpicker();
   };

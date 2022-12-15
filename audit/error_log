@@ -1,0 +1,46 @@
+[14-Dec-2022 14:35:24 UTC] PHP Warning:  Undefined array key "Disabled" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:35:24 UTC] PHP Warning:  Undefined array key "Updated" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:35:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:35:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:35:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:35:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:46:08 UTC] PHP Warning:  Undefined array key "Disabled" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:46:08 UTC] PHP Warning:  Undefined array key "Updated" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:46:08 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:46:08 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:46:08 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:46:08 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:50:24 UTC] PHP Warning:  Undefined array key "Disabled" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:50:24 UTC] PHP Warning:  Undefined array key "Updated" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:50:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:50:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:50:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 14:50:24 UTC] PHP Warning:  Undefined array key "Added" in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 165
+[14-Dec-2022 15:38:58 UTC] PHP Fatal error:  Uncaught TypeError: date(): Argument #2 ($timestamp) must be of type ?int, string given in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml:93
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml(93): date()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/audit/index.php(20): include('/home/x0211ec0u...')
+#2 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 93
+[14-Dec-2022 15:41:33 UTC] PHP Fatal error:  Uncaught TypeError: date(): Argument #2 ($timestamp) must be of type ?int, string given in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml:93
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml(93): date()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/audit/index.php(20): include('/home/x0211ec0u...')
+#2 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml on line 93
+[15-Dec-2022 10:02:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml(3): Database->__construct()
+#3 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/audit/index.php(20): include('/home/x0211ec0u...')
+#4 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
+[15-Dec-2022 10:02:17 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php:61
+Stack trace:
+#0 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(61): PDO->query()
+#1 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php(14): Database->query()
+#2 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Views/audit.phtml(3): Database->__construct()
+#3 /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/audit/index.php(20): include('/home/x0211ec0u...')
+#4 {main}
+  thrown in /home/x0211ec0uk4r/public_html/fanatics.ammarafzal.net/Models/Database.php on line 61
